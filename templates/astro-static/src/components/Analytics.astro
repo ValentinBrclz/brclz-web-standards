@@ -1,0 +1,17 @@
+---
+// Optional PostHog integration. Renders nothing unless analytics.posthog.enabled is true.
+// The configuration is a JSON data block (not executed, so it needs no CSP exception); the
+// loader script is bundled into /_astro by Astro.
+import { defineSite } from '@valentinbrclz/web-standards/config';
+import { posthogClientConfig } from '@valentinbrclz/web-standards/posthog';
+import siteOverrides from '../../site.config.mjs';
+
+const config = posthogClientConfig(defineSite(siteOverrides));
+---
+
+{config && (
+  <>
+    <script type="application/json" id="analytics-config" set:html={JSON.stringify(config)} />
+    <script>import '../scripts/analytics';</script>
+  </>
+)}

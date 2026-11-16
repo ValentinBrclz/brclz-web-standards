@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "extends": ["./biome/base.json"],
+  "files": {
+    "includes": [
+      "!**/node_modules",
+      "!**/dist",
+      "!**/.astro",
+      "!types",
+      "!tests/fixtures",
+      "!!templates/astro-static/biome.json"
+    ],
+    "ignoreUnknown": true
+  }
+}

@@ -1,0 +1,41 @@
+---
+// Head metadata checked by `bws audit-dist`: lang, title, description, canonical on the
+// production origin (with the site's trailing-slash policy) and Open Graph.
+import { defineSite } from '@valentinbrclz/web-standards/config';
+import { buildPageMeta } from '@valentinbrclz/web-standards/seo-meta';
+import siteOverrides from '../../site.config.mjs';
+import '../styles/global.css';
+import Analytics from '../components/Analytics.astro'; // feature:posthog
+
+interface Props {
+  description: string;
+  robots?: string;
+  title: string;
+}
+
+const { title, description, robots } = Astro.props;
+const site = defineSite(siteOverrides);
+const meta = buildPageMeta({ site, path: Astro.url.pathname, title, description, robots });
+---
+
+<html lang={site.identity.language ?? 'fr-CH'}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <meta name="robots" content={meta.robots} />
+    <link rel="canonical" href={meta.canonical} />
+    <meta property="og:type" content={meta.og.type} />
+    <meta property="og:title" content={meta.og.title} />
+    <meta property="og:description" content={meta.og.description} />
+    <meta property="og:url" content={meta.og.url} />
+    <Analytics /><!-- feature:posthog -->
+  </head>
+  <body class="bg-white text-neutral-900 antialiased">
+    <a class="sr-only focus:not-sr-only focus:absolute focus:bg-white focus:p-2" href="#main"
+      >Aller au contenu</a
+    >
+    <slot />
+  </body>
+</html>

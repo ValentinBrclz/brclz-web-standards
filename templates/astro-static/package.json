@@ -1,0 +1,30 @@
+{
+  "name": "astro-static-template",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@astrojs/mdx": "8.1.6",
+    "@astrojs/sitemap": "3.7.5",
+    "@tailwindcss/vite": "4.3.5",
+    "astro": "7.4.12",
+    "astro-icon": "1.2.0",
+    "posthog-js": "1.450.0",
+    "tailwindcss": "4.3.5"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.12",
+    "@astrojs/markdown-satteri": "0.4.10",
+    "@axe-core/playwright": "4.14.0",
+    "@biomejs/biome": "2.6.8",
+    "@commitlint/cli": "21.2.4",
+    "@commitlint/config-conventional": "21.2.4",
+    "@iconify-json/tabler": "1.2.46",
+    "@playwright/test": "1.65.0",
+    "@tailwindcss/typography": "0.5.20",
+    "pagefind": "1.6.0",
+    "playwright-core": "1.65.0",
+    "typescript": "6.0.3",
+    "wrangler": "4.162.0"
+  },
+  "//": "Dependency catalogue for `bws init` (kept current by Dependabot). Optional packages are selected by --features; see src/init.mjs."
+}

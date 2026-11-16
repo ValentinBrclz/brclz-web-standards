@@ -1,0 +1,135 @@
+{
+  "name": "@valentinbrclz/web-standards",
+  "version": "0.3.0",
+  "private": true,
+  "description": "Versioned standards for Astro static sites on Cloudflare Workers Static Assets",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ValentinBrclz/brclz-web-standards.git"
+  },
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    "./astro": {
+      "types": "./types/astro.d.mts",
+      "default": "./src/astro.mjs"
+    },
+    "./config": {
+      "types": "./types/config.d.mts",
+      "default": "./src/config.mjs"
+    },
+    "./csp": {
+      "types": "./types/csp.d.mts",
+      "default": "./src/csp.mjs"
+    },
+    "./headers": {
+      "types": "./types/headers.d.mts",
+      "default": "./src/headers.mjs"
+    },
+    "./headers/runtime": {
+      "types": "./types/headers-runtime.d.mts",
+      "default": "./src/headers-runtime.mjs"
+    },
+    "./redirects": {
+      "types": "./types/redirects.d.mts",
+      "default": "./src/redirects.mjs"
+    },
+    "./posthog": {
+      "types": "./types/posthog.d.mts",
+      "default": "./src/posthog.mjs"
+    },
+    "./seo": {
+      "types": "./types/seo.d.mts",
+      "default": "./src/seo.mjs"
+    },
+    "./seo-meta": {
+      "types": "./types/seo-meta.d.mts",
+      "default": "./src/seo-meta.mjs"
+    },
+    "./site-file": {
+      "types": "./types/site-file.d.mts",
+      "default": "./src/site-file.mjs"
+    },
+    "./aio": {
+      "types": "./types/aio.d.mts",
+      "default": "./src/aio.mjs"
+    },
+    "./wrangler": {
+      "types": "./types/wrangler.d.mts",
+      "default": "./src/wrangler.mjs"
+    },
+    "./posthog/client": {
+      "types": "./types/posthog-client.d.mts",
+      "default": "./src/posthog-client.mjs"
+    },
+    "./biome": "./biome/base.json",
+    "./typescript": "./typescript/tsconfig.json",
+    "./commitlint": "./commitlint/config.mjs",
+    "./package.json": "./package.json",
+    "./init": {
+      "types": "./types/init.d.mts",
+      "default": "./src/init.mjs"
+    }
+  },
+  "bin": {
+    "brclz": "./bin/brclz.mjs"
+  },
+  "files": [
+    "bin",
+    "src",
+    "types",
+    "biome",
+    "typescript",
+    "commitlint",
+    "claude",
+    "templates",
+    "docs",
+    "examples",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "agents": "node scripts/sync-agents.mjs",
+    "agents:check": "node scripts/sync-agents.mjs --check",
+    "lint": "biome check .",
+    "test": "node --test \"tests/**/*.test.mjs\"",
+    "test:smoke": "node scripts/smoke.mjs",
+    "typecheck": "tsc -p tsconfig.json",
+    "types": "tsc -p tsconfig.types.json",
+    "types:check": "node scripts/check-types.mjs",
+    "verify": "npm run lint && npm run typecheck && npm run types:check && npm run agents:check && npm test"
+  },
+  "dependencies": {
+    "smol-toml": "^1.9.1",
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.6.8",
+    "@commitlint/cli": "^21.2.4",
+    "@commitlint/config-conventional": "^21.2.4",
+    "@types/node": "^26.6.6",
+    "ajv": "^8.20.0",
+    "playwright": "1.65.0",
+    "posthog-js": "^1.450.0",
+    "typescript": "^7.0.2",
+    "wrangler": "^4.162.0"
+  },
+  "peerDependencies": {
+    "@biomejs/biome": "^2.6.8",
+    "astro": ">=6.0.0",
+    "posthog-js": "^1.300.0"
+  },
+  "peerDependenciesMeta": {
+    "@biomejs/biome": {
+      "optional": true
+    },
+    "astro": {
+      "optional": true
+    },
+    "posthog-js": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=26.0.0"
+  }
+}

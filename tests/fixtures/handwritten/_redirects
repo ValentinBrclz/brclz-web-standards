@@ -1,0 +1,9 @@
+# Synthetic example: language root and retired URLs, targets with the trailing slash.
+/ /fr/ 302
+/fr/contacts/ /fr/contact/ 301
+/fr/contacts /fr/contact/ 301
+/en/contact-us/ /en/contact/ 301
+/en/contact-us /en/contact/ 301
+/fr/partenaires/ /fr/fondation/#partenaires 301
+/wp-content/uploads/2021/05/terms.pdf /documents/terms.pdf 301
+/feed/ /fr/ 301

@@ -1,0 +1,56 @@
+---
+// Pagefind search (feature "search"): a GET form that works without JavaScript
+// for the query, and the Pagefind API (built by `pagefind --site dist`) for results. The CSP
+// allows 'wasm-unsafe-eval' for Pagefind's WebAssembly. Results are rendered as text only.
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Recherche" description="Rechercher dans le site." robots="noindex, follow">
+  <main id="main" class="mx-auto max-w-3xl px-4 py-16">
+    <h1 class="text-3xl font-bold">Recherche</h1>
+    <search class="mt-8 block">
+      <form method="get" class="flex gap-2">
+        <label class="sr-only" for="q">Termes recherchés</label>
+        <input
+          id="q"
+          name="q"
+          type="search"
+          enterkeyhint="search"
+          class="min-h-12 flex-1 border px-3 py-2"
+        />
+        <button type="submit" class="min-h-12 border px-4 py-2">Rechercher</button>
+      </form>
+    </search>
+    <p id="search-status" class="mt-6" aria-live="polite"></p>
+    <ol id="search-results" class="mt-4 space-y-4"></ol>
+  </main>
+</BaseLayout>
+
+<script>
+type PagefindResult = { data: () => Promise<{ url: string; meta: { title?: string } }> };
+type Pagefind = { search: (query: string) => Promise<{ results: PagefindResult[] }> };
+
+const query = new URLSearchParams(location.search).get('q')?.trim() ?? '';
+const input = document.querySelector<HTMLInputElement>('#q');
+const status = document.querySelector<HTMLElement>('#search-status');
+const list = document.querySelector<HTMLOListElement>('#search-results');
+if (input) input.value = query;
+if (query && status && list) {
+  status.textContent = 'Recherche…';
+  // The index only exists in the built site, so the path is not resolved by Vite.
+  const path = '/pagefind/pagefind.js';
+  const pagefind = (await import(/* @vite-ignore */ path)) as Pagefind;
+  const { results } = await pagefind.search(query);
+  const pages = await Promise.all(results.slice(0, 20).map((result) => result.data()));
+  status.textContent = `${pages.length} résultat(s)`;
+  for (const page of pages) {
+    const item = document.createElement('li');
+    const link = document.createElement('a');
+    link.href = page.url;
+    link.textContent = page.meta.title ?? page.url;
+    link.className = 'underline';
+    item.append(link);
+    list.append(item);
+  }
+}
+</script>

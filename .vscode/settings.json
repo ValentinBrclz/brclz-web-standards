@@ -1,0 +1,30 @@
+{
+  "js/ts.tsdk.path": "./node_modules/typescript/lib",
+  "js/ts.tsdk.promptToUseWorkspaceVersion": true,
+  "js/ts.updateImportsOnFileMove.enabled": "always",
+
+  "files.eol": "\n",
+
+  "biome.requireConfiguration": true,
+  "editor.defaultFormatter": "biomejs.biome",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "never",
+    "source.organizeImports.biome": "explicit",
+    "source.fixAll.biome": "explicit"
+  },
+
+  // Tailwind CSS IntelliSense
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "css.lint.unknownAtRules": "ignore",
+  "tailwindCSS.experimental.configFile": {
+    "src/styles/global.css": "/src/styles/**"
+  },
+
+  // Extension-specific settings
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  }
+}

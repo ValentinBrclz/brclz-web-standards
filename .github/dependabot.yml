@@ -1,0 +1,37 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      dev-tooling:
+        dependency-type: development
+        update-types: [minor, patch]
+    ignore:
+      # Keep the Node typings on the supported runtime major (engines.node).
+      - dependency-name: '@types/node'
+        update-types: ['version-update:semver-major']
+  # Versions installed by `brclz init` in new sites.
+  - package-ecosystem: npm
+    directory: /templates/astro-static
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      astro-stack:
+        patterns: ['*']
+        update-types: [minor, patch]
+    ignore:
+      # @astrojs/check accepts TypeScript ^5 || ^6 only.
+      - dependency-name: typescript
+        update-types: ['version-update:semver-major']
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
