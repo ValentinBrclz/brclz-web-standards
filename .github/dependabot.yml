@@ -1,13 +1,31 @@
+# Grouped updates: one weekly PR per group for minor/patch, one PR per major.
+# Docs: https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
 version: 2
 updates:
   - package-ecosystem: npm
     directory: /
     schedule:
       interval: weekly
+      day: monday
+      timezone: Europe/Zurich
     cooldown:
       default-days: 7
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: build(deps)
+      prefix-development: build(deps-dev)
     groups:
-      dev-tooling:
+      security:
+        applies-to: security-updates
+        patterns: ['*']
+      cloudflare:
+        patterns: [wrangler, '@cloudflare/*']
+        update-types: [minor, patch]
+      production:
+        dependency-type: production
+        update-types: [minor, patch]
+      development:
         dependency-type: development
         update-types: [minor, patch]
     ignore:
@@ -19,11 +37,29 @@ updates:
     directory: /templates/astro-static
     schedule:
       interval: weekly
+      day: monday
+      timezone: Europe/Zurich
     cooldown:
       default-days: 7
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: build(deps)
+      prefix-development: build(deps-dev)
     groups:
-      astro-stack:
+      security:
+        applies-to: security-updates
         patterns: ['*']
+      cloudflare:
+        patterns: [wrangler, '@cloudflare/*']
+        update-types: [minor, patch]
+      astro:
+        patterns: [astro, '@astrojs/*']
+        update-types: [minor, patch]
+      production:
+        dependency-type: production
+        update-types: [minor, patch]
+      development:
+        dependency-type: development
         update-types: [minor, patch]
     ignore:
       # @astrojs/check accepts TypeScript ^5 || ^6 only.
@@ -33,5 +69,13 @@ updates:
     directory: /
     schedule:
       interval: weekly
+      day: monday
+      timezone: Europe/Zurich
     cooldown:
       default-days: 7
+    commit-message:
+      prefix: ci(deps)
+    groups:
+      actions:
+        patterns: ['*']
+        update-types: [minor, patch]
