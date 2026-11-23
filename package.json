@@ -111,7 +111,7 @@
     "playwright": "1.65.0",
     "posthog-js": "^1.450.0",
     "typescript": "^7.0.2",
-    "wrangler": "^4.162.0"
+    "wrangler": "^4.163.0"
   },
   "peerDependencies": {
     "@biomejs/biome": "^2.6.8",
