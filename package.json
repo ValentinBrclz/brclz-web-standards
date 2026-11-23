@@ -108,7 +108,7 @@
     "@commitlint/config-conventional": "^21.2.4",
     "@types/node": "^26.6.6",
     "ajv": "^8.20.0",
-    "playwright": "1.65.0",
+    "playwright": "1.65.1",
     "posthog-js": "^1.450.0",
     "typescript": "^7.0.2",
     "wrangler": "^4.162.0"
