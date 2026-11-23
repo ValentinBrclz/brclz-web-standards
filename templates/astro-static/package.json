@@ -24,7 +24,7 @@
     "pagefind": "1.6.0",
     "playwright-core": "1.65.0",
     "typescript": "6.0.3",
-    "wrangler": "4.162.0"
+    "wrangler": "4.163.0"
   },
   "//": "Dependency catalogue for `bws init` (kept current by Dependabot). Optional packages are selected by --features; see src/init.mjs."
 }
