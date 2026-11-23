@@ -19,12 +19,12 @@
     "@commitlint/cli": "21.2.4",
     "@commitlint/config-conventional": "21.2.4",
     "@iconify-json/tabler": "1.2.46",
-    "@playwright/test": "1.65.0",
+    "@playwright/test": "1.65.1",
     "@tailwindcss/typography": "0.5.20",
     "pagefind": "1.6.0",
-    "playwright-core": "1.65.0",
+    "playwright-core": "1.65.1",
     "typescript": "6.0.3",
-    "wrangler": "4.162.0"
+    "wrangler": "4.163.0"
   },
   "//": "Dependency catalogue for `bws init` (kept current by Dependabot). Optional packages are selected by --features; see src/init.mjs."
 }
